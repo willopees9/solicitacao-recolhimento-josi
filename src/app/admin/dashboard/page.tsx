@@ -80,6 +80,15 @@ export default async function AdminDashboardPage({
     .slice(0, 5);
 
   const query = buildQuery(filters);
+  const hasActiveFilters = Boolean(
+    filters.periodo !== "hoje" ||
+      filters.inicio ||
+      filters.fim ||
+      filters.loja ||
+      filters.cidade ||
+      filters.promotor ||
+      filters.tipo
+  );
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-10">
@@ -95,92 +104,101 @@ export default async function AdminDashboardPage({
         <LogoutButton />
       </div>
 
-      <form className="mb-6 grid gap-3 rounded-md border border-border p-4 md:grid-cols-3 lg:grid-cols-6">
-        <Field label="Periodo">
-          <select name="periodo" defaultValue={filters.periodo} className="w-full rounded-md border border-input px-3 py-2 text-sm">
-            {PERIOD_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </Field>
+      <details className="group mb-4">
+        <summary className="ml-auto flex w-fit cursor-pointer list-none items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground hover:text-foreground">
+          <span>Filtros</span>
+          {hasActiveFilters && <span className="rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">ativos</span>}
+          <span className="text-xs group-open:hidden">abrir</span>
+          <span className="hidden text-xs group-open:inline">fechar</span>
+        </summary>
 
-        <Field label="Inicio">
-          <input
-            name="inicio"
-            type="date"
-            defaultValue={filters.inicio}
-            className="w-full rounded-md border border-input px-3 py-2 text-sm"
-          />
-        </Field>
+        <form className="mt-3 grid gap-3 rounded-md border border-border p-4 md:grid-cols-3 lg:grid-cols-6">
+          <Field label="Periodo">
+            <select name="periodo" defaultValue={filters.periodo} className="w-full rounded-md border border-input px-3 py-2 text-sm">
+              {PERIOD_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
 
-        <Field label="Fim">
-          <input
-            name="fim"
-            type="date"
-            defaultValue={filters.fim}
-            className="w-full rounded-md border border-input px-3 py-2 text-sm"
-          />
-        </Field>
+          <Field label="Inicio">
+            <input
+              name="inicio"
+              type="date"
+              defaultValue={filters.inicio}
+              className="w-full rounded-md border border-input px-3 py-2 text-sm"
+            />
+          </Field>
 
-        <Field label="Loja">
-          <select name="loja" defaultValue={filters.loja} className="w-full rounded-md border border-input px-3 py-2 text-sm">
-            <option value="">Todas</option>
-            {storeOptions.map((store) => (
-              <option key={store.id} value={store.id}>
-                {store.nome}
-              </option>
-            ))}
-          </select>
-        </Field>
+          <Field label="Fim">
+            <input
+              name="fim"
+              type="date"
+              defaultValue={filters.fim}
+              className="w-full rounded-md border border-input px-3 py-2 text-sm"
+            />
+          </Field>
 
-        <Field label="Cidade">
-          <select name="cidade" defaultValue={filters.cidade} className="w-full rounded-md border border-input px-3 py-2 text-sm">
-            <option value="">Todas</option>
-            {cityOptions.map((city) => (
-              <option key={city} value={city}>
-                {city}
-              </option>
-            ))}
-          </select>
-        </Field>
+          <Field label="Loja">
+            <select name="loja" defaultValue={filters.loja} className="w-full rounded-md border border-input px-3 py-2 text-sm">
+              <option value="">Todas</option>
+              {storeOptions.map((store) => (
+                <option key={store.id} value={store.id}>
+                  {store.nome}
+                </option>
+              ))}
+            </select>
+          </Field>
 
-        <Field label="Promotor">
-          <select
-            name="promotor"
-            defaultValue={filters.promotor}
-            className="w-full rounded-md border border-input px-3 py-2 text-sm"
-          >
-            <option value="">Todos</option>
-            {promotorOptions.map((promotor) => (
-              <option key={promotor.id} value={promotor.id}>
-                {promotor.nome}
-              </option>
-            ))}
-          </select>
-        </Field>
+          <Field label="Cidade">
+            <select name="cidade" defaultValue={filters.cidade} className="w-full rounded-md border border-input px-3 py-2 text-sm">
+              <option value="">Todas</option>
+              {cityOptions.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select>
+          </Field>
 
-        <Field label="Tipo">
-          <select name="tipo" defaultValue={filters.tipo} className="w-full rounded-md border border-input px-3 py-2 text-sm">
-            <option value="">Todos</option>
-            {typeOptions.map((type) => (
-              <option key={type.id} value={type.id}>
-                {type.nome}
-              </option>
-            ))}
-          </select>
-        </Field>
+          <Field label="Promotor">
+            <select
+              name="promotor"
+              defaultValue={filters.promotor}
+              className="w-full rounded-md border border-input px-3 py-2 text-sm"
+            >
+              <option value="">Todos</option>
+              {promotorOptions.map((promotor) => (
+                <option key={promotor.id} value={promotor.id}>
+                  {promotor.nome}
+                </option>
+              ))}
+            </select>
+          </Field>
 
-        <div className="flex items-end gap-2 md:col-span-2 lg:col-span-5">
-          <button type="submit" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
-            Aplicar filtros
-          </button>
-          <Link href="/admin/dashboard" className="rounded-md border border-border px-4 py-2 text-sm">
-            Limpar
-          </Link>
-        </div>
-      </form>
+          <Field label="Tipo">
+            <select name="tipo" defaultValue={filters.tipo} className="w-full rounded-md border border-input px-3 py-2 text-sm">
+              <option value="">Todos</option>
+              {typeOptions.map((type) => (
+                <option key={type.id} value={type.id}>
+                  {type.nome}
+                </option>
+              ))}
+            </select>
+          </Field>
+
+          <div className="flex items-end gap-2 md:col-span-2 lg:col-span-5">
+            <button type="submit" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
+              Aplicar filtros
+            </button>
+            <Link href="/admin/dashboard" className="rounded-md border border-border px-4 py-2 text-sm">
+              Limpar
+            </Link>
+          </div>
+        </form>
+      </details>
 
       <section className="grid gap-3 md:grid-cols-2 lg:grid-cols-6">
         <MetricCard label="Hoje" value={todayRows.length} />
