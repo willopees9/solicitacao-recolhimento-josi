@@ -19,7 +19,7 @@ Entregue ate agora:
 - Sprint 6: Nova Solicitacao (Dados Gerais)
 - Sprint 7: Produtos da Solicitacao
 - Sprint 8: Upload de Evidencias
-- Sprint 9: Painel de Conferencia
+- Sprint 9: Painel de Solicitacoes
 - Sprint 10: Aprovacao, Correcao e Rejeicao
 - Sprint 11: Historico administrativo de solicitacoes finalizadas
 - Sprint 12: Dashboard Administrativo
@@ -37,7 +37,7 @@ Proxima etapa:
 - O campo Nota Fiscal foi removido da experiencia do usuario.
 - Evidencias sao obrigatorias para enviar uma solicitacao.
 - Evidencias ficam no formulario de nova solicitacao, antes do envio.
-- O Admin ve a fila em Conferencia e consulta aprovadas/rejeitadas no Historico.
+- O Admin ve a fila em Solicitacoes e consulta aprovadas/rejeitadas no Historico.
 - Promotor continua via web. PWA/app nativo fica fora do escopo atual.
 - Admin Master com indicadores de perda/despesa fica reservado para etapa futura,
   depois dos sprints atuais.
@@ -54,7 +54,7 @@ Proxima etapa:
 | 6 | Nova Solicitacao (Dados Gerais) |
 | 7 | Produtos da Solicitacao |
 | 8 | Upload de Evidencias |
-| 9 | Painel de Conferencia |
+| 9 | Painel de Solicitacoes |
 | 10 | Aprovacao, Correcao e Rejeicao |
 | 11 | Historico Administrativo |
 | 12 | Dashboard Administrativo |
@@ -76,7 +76,7 @@ status, tipo e promotor.
 **Pesquisa e Filtros**: busca compacta e filtros recolhidos nas listas de
 solicitacoes, mantendo a tela limpa. Implementado em:
 
-- `/admin/conferencia`
+- `/admin/conferencia` (tela exibida como Solicitacoes)
 - `/admin/historico`
 - `/promotor/solicitacoes`
 

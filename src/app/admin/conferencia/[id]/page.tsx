@@ -57,7 +57,7 @@ export default async function ConferenciaDetalhePage({
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Link href={isFinalized ? "/admin/historico" : "/admin/conferencia"} className="mb-2 inline-block text-sm underline">
-            Voltar para {isFinalized ? "Historico" : "Conferencia"}
+            Voltar para {isFinalized ? "Historico" : "Solicitacoes"}
           </Link>
           <h1 className="text-2xl font-semibold">{request.numero}</h1>
         </div>

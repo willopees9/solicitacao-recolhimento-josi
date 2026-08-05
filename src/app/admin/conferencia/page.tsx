@@ -74,9 +74,9 @@ export default async function ConferenciaPage({
       <AdminNav />
 
       <div className="mb-6 flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold">Painel de Conferencia</h1>
+        <h1 className="text-2xl font-semibold">Solicitacoes</h1>
         <p className="text-sm text-muted-foreground">
-          Solicitacoes aguardando analise administrativa.
+          Acompanhe as solicitacoes que chegam para analise administrativa.
         </p>
       </div>
 
