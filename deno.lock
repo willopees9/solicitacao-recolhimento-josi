@@ -11,6 +11,8 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@netlify/plugin-nextjs@^5.15.13",
+        "npm:@opentelemetry/api@^1.9.1",
         "npm:@supabase/ssr@0.4",
         "npm:@supabase/supabase-js@^2.45.4",
         "npm:@types/node@^20.14.15",

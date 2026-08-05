@@ -22,10 +22,11 @@ Entregue ate agora:
 - Sprint 9: Painel de Conferencia
 - Sprint 10: Aprovacao, Correcao e Rejeicao
 - Sprint 11: Historico administrativo de solicitacoes finalizadas
+- Sprint 12: Dashboard Administrativo
 
 Proxima etapa:
 
-- Sprint 12: Dashboard Administrativo
+- Sprint 13: Pesquisa e Filtros
 
 ## Decisoes atuais do produto
 
@@ -65,6 +66,9 @@ Proxima etapa:
 **Dashboard Administrativo**: indicadores basicos, como solicitacoes de hoje e
 por status, com filtros por periodo, loja, cidade, promotor e tipo. O objetivo
 e dar visao operacional sem transformar o MVP em um BI complexo.
+
+Implementado em `/admin/dashboard` com cards de totais, filtros e resumos por
+status, tipo e promotor.
 
 ## Stack
 
