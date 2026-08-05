@@ -96,6 +96,10 @@ nao deve ser enviado ao GitHub.
 - Nunca testar migration nova direto em production.
 - Nunca colar `SUPABASE_SERVICE_ROLE_KEY` em issue, chat, commit, README ou
   arquivo versionado.
+- Enquanto a conta Netlify estiver no plano Free, o repositorio pode ficar
+  publico para evitar bloqueio de deploy por contributor nao reconhecido em
+  repo privado. Antes de voltar o repositorio para privado, conectar a conta
+  GitHub no Netlify ou ativar o plano necessario.
 
 ## Observacao sobre deploy manual atual
 
