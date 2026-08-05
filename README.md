@@ -23,10 +23,11 @@ Entregue ate agora:
 - Sprint 10: Aprovacao, Correcao e Rejeicao
 - Sprint 11: Historico administrativo de solicitacoes finalizadas
 - Sprint 12: Dashboard Administrativo
+- Sprint 13: Pesquisa e Filtros
 
 Proxima etapa:
 
-- Sprint 13: Pesquisa e Filtros
+- Sprint 14: Testes e Seguranca
 
 ## Decisoes atuais do produto
 
@@ -69,6 +70,15 @@ e dar visao operacional sem transformar o MVP em um BI complexo.
 
 Implementado em `/admin/dashboard` com cards de totais, filtros e resumos por
 status, tipo e promotor.
+
+## Sprint 13
+
+**Pesquisa e Filtros**: busca compacta e filtros recolhidos nas listas de
+solicitacoes, mantendo a tela limpa. Implementado em:
+
+- `/admin/conferencia`
+- `/admin/historico`
+- `/promotor/solicitacoes`
 
 ## Stack
 
