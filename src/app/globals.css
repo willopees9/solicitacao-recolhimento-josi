@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Paleta neutra (inspirada em Linear/Vercel), conforme Etapa 4 do
+       planejamento. Valores em HSL sem a função hsl() em volta, porque o
+       tailwind.config.ts já envolve cada variável em hsl(var(--nome)). */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 12%;
+
+    --primary: 240 6% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    /* Cores semânticas de status — usadas pelo componente StatusBadge
+       (introduzido na Sprint 5). Mantidas centralizadas aqui para que toda
+       a aplicação use exatamente a mesma cor para o mesmo status. */
+    --status-aguardando-conferencia: 240 4% 46%; /* cinza */
+    --status-aguardando-correcao: 38 92% 50%; /* amarelo/alerta */
+    --status-aprovada: 142 71% 35%; /* verde */
+    --status-rejeitada: 0 72% 51%; /* vermelho */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
