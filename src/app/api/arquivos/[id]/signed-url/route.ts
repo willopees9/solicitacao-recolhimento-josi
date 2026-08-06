@@ -35,5 +35,8 @@ export async function GET(
     return NextResponse.json({ error: "Não foi possível gerar o link do arquivo." }, { status: 500 });
   }
 
-  return NextResponse.json({ url: signed.signedUrl });
+  return NextResponse.json(
+    { url: signed.signedUrl },
+    { headers: { "Cache-Control": "no-store" } }
+  );
 }

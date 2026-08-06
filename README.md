@@ -24,10 +24,11 @@ Entregue ate agora:
 - Sprint 11: Historico administrativo de solicitacoes finalizadas
 - Sprint 12: Dashboard Administrativo
 - Sprint 13: Pesquisa e Filtros
+- Sprint 14: Testes e Seguranca
 
 Proxima etapa:
 
-- Sprint 14: Testes e Seguranca
+- Sprint 15: Homologacao
 
 ## Decisoes atuais do produto
 
@@ -80,6 +81,19 @@ solicitacoes, mantendo a tela limpa. Implementado em:
 - `/admin/historico`
 - `/promotor/solicitacoes`
 
+## Sprint 14
+
+**Testes e Seguranca**: checagens automatizadas e hardening basico sem mudar o
+fluxo do usuario. Implementado:
+
+- Testes automatizados para senha temporaria e politica de upload.
+- Comando unico `npm run check` para validar teste, TypeScript, lint e build.
+- Senhas temporarias com complexidade minima.
+- Politica de upload centralizada e testada por extensao, MIME type e tamanho.
+- Respostas sensiveis com `Cache-Control: no-store`.
+- Cabecalhos basicos de seguranca no Next.js.
+- Dependencias principais atualizadas dentro da linha compativel do MVP.
+
 ## Stack
 
 - Next.js 14 App Router
@@ -131,9 +145,16 @@ solicitacoes, mantendo a tela limpa. Implementado em:
 Antes de subir mudancas:
 
 ```bash
+npm run test
 npm run typecheck
 npm run lint
 npm run build
+```
+
+Ou rode tudo em sequencia:
+
+```bash
+npm run check
 ```
 
 ## Variaveis de ambiente

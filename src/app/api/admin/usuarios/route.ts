@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { randomBytes } from "crypto";
 import { requireApiRole } from "@/lib/auth/requireApiRole";
 import { createServiceRoleClient } from "@/lib/supabase/serviceRole";
 import { logSecurityEvent } from "@/lib/auth/securityLog";
 import { createUserSchema } from "@/lib/validations/admin";
+import { generateTemporaryPassword } from "@/lib/security/password";
 
 /**
  * Gera uma senha provisória aleatória. O usuário é obrigado a trocá-la no
@@ -11,10 +11,6 @@ import { createUserSchema } from "@/lib/validations/admin";
  * Não existe envio de e-mail configurado neste MVP — a senha é devolvida
  * na resposta para o Admin repassar manualmente ao usuário.
  */
-function generateTemporaryPassword() {
-  return randomBytes(9).toString("base64url");
-}
-
 export async function POST(request: NextRequest) {
   try {
     const check = await requireApiRole(["ADMIN"]);
@@ -71,7 +67,10 @@ export async function POST(request: NextRequest) {
       metadata: { email, role },
     });
 
-    return NextResponse.json({ id: data.user.id, temporaryPassword });
+    return NextResponse.json(
+      { id: data.user.id, temporaryPassword },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (err) {
     // Rede de segurança final: qualquer erro inesperado (ex: falha de rede
     // com o Supabase) sempre volta como JSON, nunca como resposta vazia —
