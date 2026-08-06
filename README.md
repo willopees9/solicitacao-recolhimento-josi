@@ -25,10 +25,11 @@ Entregue ate agora:
 - Sprint 12: Dashboard Administrativo
 - Sprint 13: Pesquisa e Filtros
 - Sprint 14: Testes e Seguranca
-
-Proxima etapa:
-
 - Sprint 15: Homologacao
+
+Status:
+
+- MVP em homologacao.
 
 ## Decisoes atuais do produto
 
@@ -93,6 +94,15 @@ fluxo do usuario. Implementado:
 - Respostas sensiveis com `Cache-Control: no-store`.
 - Cabecalhos basicos de seguranca no Next.js.
 - Dependencias principais atualizadas dentro da linha compativel do MVP.
+
+## Sprint 15
+
+**Homologacao**: roteiro final para validar o MVP com Admin e Promotor antes
+do uso operacional. O checklist esta em:
+
+```text
+docs/homologacao-mvp.md
+```
 
 ## Stack
 
