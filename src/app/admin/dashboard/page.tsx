@@ -4,6 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import { AdminNav } from "@/components/admin/AdminNav";
 import { LogoutButton } from "@/components/auth/LogoutButton";
 import { StatusBadge } from "@/components/shared/StatusBadge";
+import { getRequestPriority } from "@/lib/requests/priority";
 import { createClient } from "@/lib/supabase/server";
 
 type SearchParams = {
@@ -75,6 +76,9 @@ export default async function AdminDashboardPage({
   ]);
 
   const statusCounts = countBy(periodRows, (request) => request.status);
+  const overdueRows = periodRows.filter((request) =>
+    getRequestPriority({ status: request.status, createdAt: request.created_at }).overdue
+  );
   const typeCounts = countBy(periodRows, (request) => request.request_type?.nome ?? "Sem tipo");
   const promotorCounts = countBy(periodRows, (request) => request.promotor?.nome ?? "Sem promotor");
   const topPromoters = Object.entries(promotorCounts)
@@ -230,8 +234,8 @@ export default async function AdminDashboardPage({
           <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
             <MetricCard label="Hoje" value={todayRows.length} icon={Clock3} tone="green" />
             <MetricCard label="Total no periodo" value={periodRows.length} icon={Layers3} tone="yellow" />
+            <MetricCard label="Fora do prazo" value={overdueRows.length} icon={AlertTriangle} tone="orange" />
             <MetricCard label="Aguardando conferencia" value={statusCounts.AGUARDANDO_CONFERENCIA ?? 0} icon={FileText} tone="mint" />
-            <MetricCard label="Aguardando correcao" value={statusCounts.AGUARDANDO_CORRECAO ?? 0} icon={AlertTriangle} tone="orange" />
             <MetricCard label="Aprovadas" value={statusCounts.APROVADA ?? 0} icon={CheckCircle2} tone="leaf" />
             <MetricCard label="Rejeitadas" value={statusCounts.REJEITADA ?? 0} icon={XCircle} tone="coral" />
           </section>

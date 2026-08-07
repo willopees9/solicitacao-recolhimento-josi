@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { AdminNav } from "@/components/admin/AdminNav";
 import { StatusBadge } from "@/components/shared/StatusBadge";
+import { getRequestPriority } from "@/lib/requests/priority";
 
 type RelatedName = { nome?: string; cidade?: string } | null;
 type RequestRow = {
@@ -25,6 +26,7 @@ type SearchParams = {
   cidade?: string;
   promotor?: string;
   tipo?: string;
+  prioridade?: string;
 };
 
 type Option = { id: string; nome: string; cidade?: string };
@@ -65,8 +67,13 @@ export default async function ConferenciaPage({
   if (cityStoreIds) query = cityStoreIds.length > 0 ? query.in("store_id", cityStoreIds) : query.eq("store_id", "__none__");
 
   const { data: requests } = await query;
-  const rows = applyTextSearch((requests ?? []) as unknown as RequestRow[], filters.q);
-  const hasAdvancedFilters = Boolean(filters.status || filters.loja || filters.cidade || filters.promotor || filters.tipo);
+  const searchedRows = applyTextSearch((requests ?? []) as unknown as RequestRow[], filters.q);
+  const rows = filters.prioridade
+    ? searchedRows.filter((request) =>
+        getRequestPriority({ status: request.status, createdAt: request.created_at }).overdue
+      )
+    : searchedRows;
+  const hasAdvancedFilters = Boolean(filters.status || filters.loja || filters.cidade || filters.promotor || filters.tipo || filters.prioridade);
   const hasAnyFilter = Boolean(filters.q || hasAdvancedFilters);
 
   return (
@@ -150,6 +157,12 @@ export default async function ConferenciaPage({
                 ))}
               </select>
             </Field>
+            <Field label="Prioridade">
+              <select name="prioridade" defaultValue={filters.prioridade} className="w-full rounded-md border border-input px-3 py-2 text-sm">
+                <option value="">Todas</option>
+                <option value="atrasadas">Prioritarias</option>
+              </select>
+            </Field>
             <div className="flex items-end gap-2">
               <button type="submit" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
                 Aplicar
@@ -188,9 +201,21 @@ export default async function ConferenciaPage({
             </tr>
           </thead>
           <tbody>
-            {rows.map((request) => (
-              <tr key={request.id} className="border-t border-border">
-                <td className="px-4 py-3 font-medium">{request.numero}</td>
+            {rows.map((request) => {
+              const priority = getRequestPriority({ status: request.status, createdAt: request.created_at });
+
+              return (
+              <tr key={request.id} className={`border-t border-border ${priority.overdue ? "bg-status-aguardandoCorrecao/10" : ""}`}>
+                <td className="px-4 py-3 font-medium">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span>{request.numero}</span>
+                    {priority.overdue && (
+                      <span className="rounded-full bg-status-aguardandoCorrecao/20 px-2 py-0.5 text-xs font-medium text-status-aguardandoCorrecao">
+                        Prioridade
+                      </span>
+                    )}
+                  </div>
+                </td>
                 <td className="px-4 py-3 text-muted-foreground">
                   {new Date(request.created_at).toLocaleDateString("pt-BR")}
                 </td>
@@ -209,7 +234,8 @@ export default async function ConferenciaPage({
                   </Link>
                 </td>
               </tr>
-            ))}
+              );
+            })}
 
             {rows.length === 0 && (
               <tr>
@@ -233,6 +259,7 @@ function normalizeFilters(searchParams: SearchParams) {
     cidade: searchParams.cidade ?? "",
     promotor: searchParams.promotor ?? "",
     tipo: searchParams.tipo ?? "",
+    prioridade: searchParams.prioridade === "atrasadas" ? "atrasadas" : "",
   };
 }
 

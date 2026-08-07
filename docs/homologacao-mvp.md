@@ -51,6 +51,8 @@ principal sem erro bloqueante:
 - [ ] Admin aprova uma solicitacao.
 - [ ] Admin rejeita uma solicitacao informando motivo.
 - [ ] Admin solicita correcao informando observacao.
+- [ ] Solicitacao pendente com mais de 2 dias aparece com indicador de prioridade.
+- [ ] Filtro `Prioritarias` mostra somente solicitacoes fora do prazo.
 
 ## Checklist Promotor
 
@@ -86,6 +88,7 @@ principal sem erro bloqueante:
 - [ ] Historico busca por numero, NFD, loja ou promotor.
 - [ ] Promotor busca em Minhas Solicitacoes.
 - [ ] Dashboard filtra por periodo, loja, cidade, promotor e tipo.
+- [ ] Dashboard mostra o card `Fora do prazo`.
 
 ## Riscos Conhecidos
 
