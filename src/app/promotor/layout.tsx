@@ -13,5 +13,5 @@ export default async function PromotorLayout({
 }) {
   await requireRole(["PROMOTOR"]);
 
-  return <div className="min-h-screen">{children}</div>;
+  return <div className="min-h-screen bg-background">{children}</div>;
 }

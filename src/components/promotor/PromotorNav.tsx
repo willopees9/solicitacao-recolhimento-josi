@@ -7,15 +7,15 @@ import { LogoutButton } from "@/components/auth/LogoutButton";
  */
 export function PromotorNav() {
   return (
-    <nav className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-4">
-      <div className="flex flex-wrap gap-4 text-sm">
-        <Link href="/promotor" className="text-muted-foreground hover:text-foreground">
+    <nav className="mb-8 flex flex-wrap items-center justify-between gap-4 rounded-[18px] bg-white px-3 py-3 shadow-sm">
+      <div className="flex flex-wrap gap-2 text-sm">
+        <Link href="/promotor" className="rounded-md px-3 py-2 text-muted-foreground hover:bg-secondary hover:text-foreground">
           Início
         </Link>
-        <Link href="/promotor/solicitacoes" className="text-muted-foreground hover:text-foreground">
+        <Link href="/promotor/solicitacoes" className="rounded-md px-3 py-2 text-muted-foreground hover:bg-secondary hover:text-foreground">
           Minhas Solicitações
         </Link>
-        <Link href="/promotor/perfil" className="text-muted-foreground hover:text-foreground">
+        <Link href="/promotor/perfil" className="rounded-md px-3 py-2 text-muted-foreground hover:bg-secondary hover:text-foreground">
           Perfil
         </Link>
       </div>

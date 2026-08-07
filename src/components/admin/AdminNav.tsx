@@ -40,9 +40,9 @@ export function AdminNav({ variant = "top" }: { variant?: "top" | "side" }) {
   }
 
   return (
-    <nav className="mb-8 flex flex-wrap gap-4 border-b border-border pb-4 text-sm">
+    <nav className="mb-8 flex flex-wrap gap-2 rounded-[18px] bg-white px-3 py-3 text-sm shadow-sm">
       {links.map((link) => (
-        <Link key={link.href} href={link.href} className="text-muted-foreground hover:text-foreground">
+        <Link key={link.href} href={link.href} className="rounded-md px-3 py-2 text-muted-foreground hover:bg-secondary hover:text-foreground">
           {link.label}
         </Link>
       ))}

@@ -7,37 +7,37 @@
     /* Paleta neutra (inspirada em Linear/Vercel), conforme Etapa 4 do
        planejamento. Valores em HSL sem a função hsl() em volta, porque o
        tailwind.config.ts já envolve cada variável em hsl(var(--nome)). */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 12%;
+    --background: 43 48% 94%;
+    --foreground: 158 45% 13%;
 
-    --primary: 240 6% 10%;
+    --primary: 163 100% 17%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
+    --secondary: 48 64% 89%;
+    --secondary-foreground: 158 45% 13%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --muted: 48 28% 92%;
+    --muted-foreground: 154 10% 41%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 43 87% 66%;
+    --accent-foreground: 158 45% 13%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 217 91% 60%;
+    --border: 72 15% 86%;
+    --input: 72 15% 86%;
+    --ring: 163 100% 17%;
 
     --radius: 0.5rem;
 
     /* Cores semânticas de status — usadas pelo componente StatusBadge
        (introduzido na Sprint 5). Mantidas centralizadas aqui para que toda
        a aplicação use exatamente a mesma cor para o mesmo status. */
-    --status-aguardando-conferencia: 240 4% 46%; /* cinza */
-    --status-aguardando-correcao: 38 92% 50%; /* amarelo/alerta */
-    --status-aprovada: 142 71% 35%; /* verde */
-    --status-rejeitada: 0 72% 51%; /* vermelho */
+    --status-aguardando-conferencia: 154 10% 41%; /* cinza esverdeado */
+    --status-aguardando-correcao: 38 86% 49%; /* amarelo/alerta */
+    --status-aprovada: 146 50% 35%; /* verde */
+    --status-rejeitada: 6 72% 57%; /* coral/vermelho */
   }
 }
 
